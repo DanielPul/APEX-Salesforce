@@ -1,0 +1,17 @@
+//To create a Salesforce app to find the top buyer in Salesforce data, you would typically use Salesforce's Apex programming language.
+Here's an example of how you might implement this: //
+
+
+// Have Fun - Daniel 
+
+// Apex class to find the top buyer
+public class TopBuyerFinder {
+    
+    // Method to find the top buyer
+    public static List<Contact> findTopBuyer() {
+        // Query to find contacts with the highest total purchase amount
+        List<Contact> topBuyers = [SELECT Id, Name, (SELECT Id, Amount FROM Opportunities) FROM Contact ORDER BY (SELECT SUM(Amount) FROM Opportunities) DESC LIMIT 1];
+        
+        return topBuyers;
+    }
+}
